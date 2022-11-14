@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-x#pv)v)cj5!$3n__f&9$b8x6b^(&$vo@=p94!$uprt0j_d9^@j
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-ALLOWED_HOSTS = ['https://k-ecommerce-production.up.railway.app']
+ALLOWED_HOSTS = ['k-ecommerce-production.up.railway.app']
 
 AUTH_USER_MODEL = 'shop.MyUser'
 
