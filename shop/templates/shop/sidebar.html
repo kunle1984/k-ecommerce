@@ -1,0 +1,61 @@
+<aside class="col-lg-3 order-lg-first">
+    <div class="sidebar sidebar-shop">
+        <div class="widget widget-clean">
+            <label>Filters:</label>
+            <a href="{%url 'shop'%}" class="">Clean All</a>
+        </div><!-- End .widget widget-clean -->
+
+        <div class="widget widget-collapsible">
+            <h3 class="widget-title">
+                <a data-toggle="collapse" href="#widget-1" role="button" aria-expanded="true" aria-controls="widget-1">
+                    Category
+                </a>
+            </h3><!-- End .widget-title -->
+
+            <div class="collapse show" id="widget-1">
+                <div class="widget-body">
+                    <div class="filter-items filter-items-count">
+                        {% for category in categories%}
+                        <div class="filter-item">
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" id="cat-1">
+                                <label class="custom-control-label" for="cat-1"><a href="{%url 'shop'%}?q={{category.name}}">{{category.name}}</a></label>
+                            </div><!-- End .custom-checkbox -->
+                          
+                        </div><!-- End .filter-item -->
+                            {%endfor%}
+                       <!-- End .filter-items -->
+                </div><!-- End .widget-body -->
+            </div><!-- End .collapse -->
+        </div><!-- End .widget -->
+
+        
+        <div class="widget widget-collapsible">
+            <h3 class="widget-title">
+                <a data-toggle="collapse" href="#widget-4" role="button" aria-expanded="true" aria-controls="widget-4">
+                    Brand
+                </a>
+            </h3><!-- End .widget-title -->
+
+            <div class="collapse show" id="widget-4">
+                <div class="widget-body">
+                    <div class="filter-items">
+                        {% for brand in brands%}
+                        <div class="filter-item">
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" id="brand-1">
+                                <label class="custom-control-label" for="brand-1"><a href="{%url 'shop'%}?q={{brand.name}}">{{brand.name}}</a></label>
+                            </div><!-- End .custom-checkbox -->
+                        </div><!-- End .filter-item -->
+                            {%endfor%}
+                       <!-- End .filter-item -->
+
+                    </div><!-- End .filter-items -->
+                </div><!-- End .widget-body -->
+            </div><!-- End .collapse -->
+        </div><!-- End .widget -->
+
+        <!-- End .collapse -->
+        </div><!-- End .widget -->
+    </div><!-- End .sidebar sidebar-shop -->
+</aside>

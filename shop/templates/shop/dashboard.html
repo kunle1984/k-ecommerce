@@ -1,0 +1,37 @@
+{% extends './base.html'%}
+{%load static%}
+{%block title%}View cart{%endblock%}
+{%block slider%}
+
+<!-- End .breadcrumb-nav -->
+
+{% endblock %}
+{%block display%}
+
+<main class="main">
+    {% include './dashboard_menu.html'%}<!-- End .col-lg-3 -->
+
+                    <div class="col-md-8 col-lg-9">
+                        <div class="tab-content">
+                            <div class="tab-pane fade show active" id="tab-dashboard" role="tabpanel" aria-labelledby="tab-dashboard-link">
+                                <p>Hello <span class="font-weight-normal text-dark">{{request.user.username}}</span> (not <span class="font-weight-normal text-dark">You</span>? <a href="{%url 'logout'%}">Log out</a>) 
+                                <br>
+                                From your account dashboard you can view your <a  href="{%url 'myorder'  request.user.id %}"  >recent orders</a>, manage your <a href="#tab-address" class="tab-trigger-link">shipping and billing addresses</a>, and <a href="#tab-account" class="tab-trigger-link">edit your password and account details</a>.</p>
+                            </div><!-- .End .tab-pane -->
+
+                           <!-- .End .tab-pane -->
+                        </div>
+                    </div><!-- End .col-lg-9 -->
+                </div><!-- End .row -->
+            </div><!-- End .container -->
+        </div><!-- End .dashboard -->
+    </div><!-- End .page-content -->
+</main>
+{% endblock %}
+
+
+{%block category%}{% endblock %}
+
+{%block recent%}{% endblock %}
+
+

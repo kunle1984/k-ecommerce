@@ -1,0 +1,38 @@
+<div class="page-header text-center" style="background-image: url('assets/images/page-header-bg.jpg')">
+    <div class="container">
+        <h1 class="page-title">My Account<span>Shop</span></h1>
+    </div><!-- End .container -->
+</div><!-- End .page-header -->
+<nav aria-label="breadcrumb" class="breadcrumb-nav mb-3">
+    <div class="container">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{%url 'home'  %}" >Home</a></li>
+            <li class="breadcrumb-item"><a  href="{%url 'shop'  %}">Shop</a></li>
+            <li class="breadcrumb-item active" aria-current="page">My Account</li>
+        </ol>
+    </div><!-- End .container -->
+</nav>
+<div class="page-content">
+    <div class="dashboard">
+        <div class="container">
+            <div class="row">
+<aside class="col-md-4 col-lg-3">
+    <ul class="nav nav-dashboard flex-column mb-3 mb-md-0" role="tablist">
+        <li class="nav-item">
+            <a class="nav-link active"   href="{%url 'dashboard'  %}"  role="tab" aria-controls="tab-dashboard" >Dashboard</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{%url 'myorder'  request.user.id %}" role="tab" aria-selected="false">Orders</a>
+        </li>
+        
+        <li class="nav-item">
+            <a class="nav-link" id="tab-address-link" href="{%url 'billing-address'  request.user.id %}" role="tab" aria-controls="tab-address" aria-selected="false">Adresses</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="tab-account-link"  href="{%url 'profile' request.user.id%}" active>Account Details</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{%url 'logout'%}">Sign Out</a>
+        </li>
+    </ul>
+</aside>

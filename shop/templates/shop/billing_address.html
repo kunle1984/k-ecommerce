@@ -1,0 +1,47 @@
+{% extends './base.html'%}
+{%load static%}
+{%block title%}Billing Address{%endblock%}
+{%block slider%}
+
+<!-- End .breadcrumb-nav -->
+
+{% endblock %}
+{%block display%}
+
+<main class="main">
+    {% include './dashboard_menu.html'%}<!-- End .col-lg-3 -->
+
+                    <div class="col-md-8 col-lg-8 p-2">
+                        <div class="row">
+                            <div class="col-lg-8">
+                                <div class="card card-dashboard">
+                                    <div class="card-body">
+                                        <h3 class="card-title">Billing Address</h3><!-- End .card-title -->
+
+                                        <p>{{user.name}}</p><br>
+                                      
+                                        {{user.address}}<br>
+                                        {{user.state}}, {{user.city}},  {{user.postcode}}<br>
+                                        {{user.mobile_number}}<br>
+                                        {{user.email}}<br>
+                                        <a href="{%url 'profile' request.user.id%}">Edit <i class="icon-edit"></i></a></p>
+                                    </div><!-- End .card-body -->
+                                </div><!-- End .card-dashboard -->
+                            </div><!-- End .col-lg-6 -->
+
+                           <!-- End .col-lg-6 -->
+                        </div><!-- End .row -->
+                    </div>
+                    </div><!-- End .col-lg-9 -->
+               <!-- End .container -->
+        </div><!-- End .dashboard -->
+    </div><!-- End .page-content -->
+</main>
+{% endblock %}
+
+
+{%block category%}{% endblock %}
+
+{%block recent%}{% endblock %}
+
+

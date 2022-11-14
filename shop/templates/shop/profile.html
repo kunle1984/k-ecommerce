@@ -1,0 +1,54 @@
+{% extends './base.html'%}
+{%load static%}
+{%block title%}View cart{%endblock%}
+{%block slider%}
+
+<!-- End .breadcrumb-nav -->
+
+{% endblock %}
+{%block display%}
+
+<main class="main">
+    {% include './dashboard_menu.html'%}<!-- End .col-lg-3 -->
+
+                    <div class="col-md-8 col-lg-9 ms-2">
+                       
+                                <form action="" method="POST" enctype="multipart/form-data">
+                                    <div class="row">
+                                        {% if messages %}  
+                                      
+                                        <ul>   
+                                            {% for message in messages %}  
+                                              <div class = 'alert alert-{{message.tags}}'>  
+                                                {{ message }}   
+                                              </div>  
+                                              {% endfor %}  
+                                        </ul>   
+                                    {% endif %}   
+                                    
+                                        <div class="col-sm-12">
+                                            
+                                         {% csrf_token%}
+                                         {{form.as_p}}
+
+                                    <button type="submit" class="btn btn-outline-primary-2">
+                                        <span>SAVE CHANGES</span>
+                                        <i class="icon-long-arrow-right"></i>
+                                    </button>
+                        
+                                </form>
+                            </div><!-- .End .tab-pane -->
+                        </div>
+                    </div><!-- End .col-lg-9 -->
+               <!-- End .container -->
+        </div><!-- End .dashboard -->
+    </div><!-- End .page-content -->
+</main>
+{% endblock %}
+
+
+{%block category%}{% endblock %}
+
+{%block recent%}{% endblock %}
+
+

@@ -1,0 +1,49 @@
+{% extends './base.html'%}
+{%load static%}
+{%block title%}About{%endblock%}
+{%block slider%}
+
+<div class="page-header text-center" style="background-image: url('{% static 'shop/assets/images/page-header-bg.jpg'%}')">
+    <div class="container">
+        <h1 class="page-title">About Us</h1>
+    </div><!-- End .container -->
+</div><!-- End .page-header -->
+<nav aria-label="breadcrumb" class="breadcrumb-nav">
+    <div class="container">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a  href="{%url 'home'  %}">Home</a></li>
+            <li class="breadcrumb-item"><a href="{%url 'shop'  %}">Shop</a></li>
+            <li class="breadcrumb-item active" aria-current="page">about</li>
+        </ol>
+    </div><!-- End .container -->
+</nav><!-- End .breadcrumb-nav -->
+
+{% endblock %}
+{%block display%}
+
+<main class="main">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <p class="lead">
+                    K-ecommerce is a complete shopping web application for all your furniture and interior needs.
+                    Customer satisfaction is our watchword. Shop for all your furniture and interior while various payment options
+                    available such as cash on delivery, transfer and card payment.
+                    
+
+                    
+
+                </p>
+
+    
+    </div>
+</div>
+</div><!-- End .page-content -->
+</main>
+{% endblock %}
+
+
+{%block category%}{% endblock %}
+
+{%block recent%}{% endblock %}
+

@@ -1,0 +1,82 @@
+{% extends './base.html'%}
+{%load static%}
+{%block title%}Wish list{%endblock%}
+{%block slider%}
+
+<div class="page-header text-center" style="background-image: url('{% static 'shop/assets/images/page-header-bg.jpg'%}')">
+    <div class="container">
+        <h1 class="page-title">Shopping Cart<span>Shop</span></h1>
+    </div><!-- End .container -->
+</div><!-- End .page-header -->
+<nav aria-label="breadcrumb" class="breadcrumb-nav">
+    <div class="container">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+            <li class="breadcrumb-item"><a href="#">Shop</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Shopping Cart</li>
+        </ol>
+    </div><!-- End .container -->
+</nav><!-- End .breadcrumb-nav -->
+
+{% endblock %}
+{%block display%}
+
+<main class="main">
+    
+
+    <div class="page-content">
+        <div class="cart">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <table class="table table-cart table-mobile">
+                            <thead>
+                                <tr>
+                                    <th>Product</th>
+                                    <th>Price</th>
+                                    
+                                    <th></th>
+                                </tr>
+                            </thead>
+
+                            <tbody id="wishView">                      
+                            </tbody>
+                        </table><!-- End .table table-wishlist -->
+
+                        <div class="cart-bottom">
+                            <div class="cart-discount">
+                                <form action="#">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" required placeholder="coupon code">
+                                        <div class="input-group-append">
+                                            <button class="btn btn-outline-primary-2" type="submit"><i class="icon-long-arrow-right"></i></button>
+                                        </div><!-- .End .input-group-append -->
+                                    </div><!-- End .input-group -->
+                                </form>
+                            </div><!-- End .cart-discount -->
+                            <form action="">
+                           
+                           
+                           
+                            </form>
+                            <form action="{% url 'home'%}">
+                           
+                                <button id="clearWish" class="btn btn-outline-dark-2"><span>CLEAR CART</span><i class="icon-refresh"></i></button>
+                                
+                                </form>
+                        </div><!-- End .cart-bottom -->
+                    </div><!-- End .col-lg-9 -->
+                   <!-- End .col-lg-3 -->
+                </div><!-- End .row -->
+            </div><!-- End .container -->
+        </div><!-- End .cart -->
+    </div><!-- End .page-content -->
+</main>
+{% endblock %}
+
+
+{%block category%}{% endblock %}
+
+{%block recent%}{% endblock %}
+
+

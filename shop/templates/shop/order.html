@@ -1,0 +1,57 @@
+{% extends './base.html'%}
+{%load static%}
+{%block title%}View cart{%endblock%}
+{%block slider%}
+
+<!-- End .breadcrumb-nav -->
+
+{% endblock %}
+{%block display%}
+
+<main class="main">
+    {% include './dashboard_menu.html'%}<!-- End .col-lg-3 -->
+
+                    <div class="col-md-8 col-lg-8 p-2">
+                      <table class="table table-striped p-2">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Name</th>
+                                <th>Country</th>
+                                <th>Phone</th>
+                                <th>Date</th>
+                                <th>Amount</th>
+                            </tr>
+
+                        </thead>
+                        <tbody>
+                        {%for order in page_obj%}
+                        
+                        <tr >
+                            <td>{{order.id}}</td>
+                            <td>{{order.first_name}}-{{order.last_name}}</td>
+                            <td>{{order.country}}</td>
+                            <td>{{order.phone}}</td>
+                            <td>{{order.create}}</td>
+                            <td>$ {{order.amount}}</td>
+
+                        </tr>
+                       
+                       {%endfor%}
+                    </tbody>
+                    </table>
+                    {%include './pagination.html'%}
+                    <div id="orders" class="d-none">{{order.order}}</div>
+                    </div><!-- End .col-lg-9 -->
+               <!-- End .container -->
+        </div><!-- End .dashboard -->
+    </div><!-- End .page-content -->
+</main>
+{% endblock %}
+
+
+{%block category%}{% endblock %}
+
+{%block recent%}{% endblock %}
+
+
