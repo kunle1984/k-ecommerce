@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-x#pv)v)cj5!$3n__f&9$b8x6b^(&$vo@=p94!$uprt0j_d9^@j
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-ALLOWED_HOSTS = ['k-ecommerce-production.up.railway.app']
+ALLOWED_HOSTS = ['*']
 
 AUTH_USER_MODEL = 'shop.MyUser'
 
@@ -39,12 +39,14 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'corsheaders'
   
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
@@ -153,3 +155,8 @@ EMAIL_HOST_PASSWORD =email_host_password
 
 # To email: contact form
 RECIPIENT_ADDRESS=recipient_address
+
+CORS_ALLOWED_ORIGINS = [
+        'https://k-ecommerce-production.up.railway.app/',
+        
+    ]
