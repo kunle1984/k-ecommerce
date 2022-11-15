@@ -28,7 +28,7 @@ DEBUG = True
 
 
 AUTH_USER_MODEL = 'shop.MyUser'
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
@@ -157,6 +157,8 @@ EMAIL_HOST_PASSWORD =email_host_password
 RECIPIENT_ADDRESS=recipient_address
 
 CORS_ALLOWED_ORIGINS = [
-        'https://k-ecommerce-production.up.railway.app'
+        'https://k-ecommerce-production.up.railway.app',
+        "http://localhost:8080"
         
     ]
+CORS_ALLOW_CREDENTIALS=True
