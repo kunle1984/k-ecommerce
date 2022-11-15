@@ -161,4 +161,6 @@ CORS_ALLOWED_ORIGINS = [
         "http://localhost:8080"
         
     ]
+
+CSRF_TRUSTED_ORIGINS = ['https://k-ecommerce-production.up.railway.app']
 CORS_ALLOW_CREDENTIALS=True
