@@ -1,7 +1,7 @@
-from django.urls import path
+from django.urls import path, include
 from . import views
 from django.contrib.auth.views import LogoutView
-from . views import Contact
+from . views import Contact, PaymentFailedView, PaymentSuccessView,checkout
 
 urlpatterns = [
     path('', views.index, name="home" ),
@@ -21,6 +21,16 @@ urlpatterns = [
     path('billing-address/<int:pk>', views.profile_address, name="billing-address" ),
     path('checkout/', views.checkout, name="checkout" ),
     path('product-details/<int:pk>', views.productDetails, name="product-details" ),
+    #social login
+    path("accounts/", include("allauth.urls")),
+
+    #strip url
+    path('config/', views.stripe_config),
+    #path('create-checkout-session/', views.create_checkout_session, name='stripe-session'),
+    path('success/', PaymentSuccessView.as_view(), name='success'),
+    path('failed/', PaymentFailedView.as_view(), name='failed'),
+   
+
   
 ]
 

@@ -11,8 +11,6 @@ from django.db.models import Q
 from django.views.generic import FormView
 from django.urls import reverse_lazy, reverse
 import stripe
-from random import random,choices
-import string
 from django.views.generic import TemplateView
 import json
 from django.contrib.auth.decorators import login_required
@@ -107,33 +105,26 @@ def productDetails(request, pk):
    
     return render(request, 'shop/product_details.html', {'product':product})
 
-@login_required(login_url='login')
+
 @csrf_exempt
-def checkout(request):
-    
-    stripe_publishable_key=settings.STRIPE_PUBLISHABLE_KEY
-    if request.method=="POST":
-        order_amount=request.POST.get('orderAmount')
-        product_bought=request.POST.get('product_bought')
-        order=request.POST.get('order')
-        order_amount=float(order_amount)
-        stripe.api_key = settings.STRIPE_SECRET_KEY
-        
-        checkout_session = stripe.checkout.Session.create(
+def create_checkout_session(request):
+    stripe.api_key = settings.STRIPE_SECRET_KEY 
+    if request.method == 'GET': 
+         checkout_session = stripe.checkout.Session.create(
         # Customer Email is optional,
         # It is not safe to accept email directly from the client side
         #customer_email = request_data['email'],
         
-        customer_email=request.POST.get('email'),
+        customer_email=request.GET.get('email'),
         payment_method_types=['card'],
         line_items=[
             {
                 'price_data': {
                     'currency': 'usd',
                     'product_data': {
-                    'name': product_bought,
+                    'name': 'octo',
                     },
-                    'unit_amount': int(order_amount*100),
+                    'unit_amount': int(500*100),
                 },
                 'quantity': 1,
             }
@@ -144,8 +135,16 @@ def checkout(request):
         )+ "?session_id={CHECKOUT_SESSION_ID}" ,
         #+ "?session_id={CHECKOUT_SESSION_ID}"
         cancel_url=request.build_absolute_uri(reverse('failed')),
-            )
-        session_id='{CHECKOUT_SESSION_ID}'
+
+        
+            ) 
+    
+    return JsonResponse({'sessionId': checkout_session.id}) 
+
+@login_required(login_url='login')
+def checkout(request):
+    stripe_publishable_key=settings.STRIPE_PUBLISHABLE_KEY
+    if request.method=="POST":   
         #stripe payment procesing
         first_name=request.POST.get('fname')
         last_name=request.POST.get('lname')
@@ -160,16 +159,14 @@ def checkout(request):
         address=request.POST.get('address')
         amount=request.POST.get('orderAmount')
         user=request.user.id
-        order_number=''.join(choices(string.ascii_uppercase + string.digits, k = 15))    
         note=request.POST.get('note')
         myOder=Order(first_name=first_name, last_name=last_name,company_name=company,address=address,phone=phone,
-        email=email, postcode=postcode,  note=note, country=country, amount=amount,  order=order,  order_number=order_number,city=city, stripe_payment_intent=checkout_session.id
+        email=email, postcode=postcode,  note=note, country=country, amount=amount,  order=order, city=city 
         )
         myOder.user=request.user
         myOder.save()
         messages.success(request, 'Success! Your order is successfull, you will get your products in 5 working days')
-        #return JsonResponse({'sessionId': checkout_session.id})
-        return redirect(checkout_session.url)
+        return redirect('stripe-session')  
     return render(request, 'shop/checkout.html', { 'stripe_publishable_key':stripe_publishable_key})
 
 
@@ -276,7 +273,7 @@ def stripe_config(request):
         stripe_config = {'publicKey': settings.STRIPE_PUBLISHABLE_KEY}
         return JsonResponse(stripe_config, safe=False)
 
-        
+
 class PaymentSuccessView(TemplateView):
     template_name = "shop/payment_success.html"
 
@@ -286,12 +283,12 @@ class PaymentSuccessView(TemplateView):
             return HttpResponseNotFound('No response')
         
         stripe.api_key = settings.STRIPE_SECRET_KEY
+        session = stripe.checkout.Session.retrieve(session_id)
 
-        order = get_object_or_404(Order, stripe_payment_intent=session_id)
+        order = get_object_or_404(Order, stripe_payment_intent=session.payment_intent)
         order.has_paid = True
         order.save()
-        order_id=order.order_number
-        return render(request, self.template_name, {'order_id':order_id})
+        return render(request, self.template_name)
 
 class PaymentFailedView(TemplateView):
    template_name = "shop/payment_failed.html"

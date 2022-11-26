@@ -28,7 +28,7 @@ DEBUG = True
 
 
 AUTH_USER_MODEL = 'shop.MyUser'
-ALLOWED_HOSTS = ['k-ecommerce-production.up.railway.app' ]
+ALLOWED_HOSTS = ['k-ecommerce-production.up.railway.app' ,'127.0.0.1']
 # Application definition
 
 INSTALLED_APPS = [
@@ -39,7 +39,19 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'corsheaders'
+    'corsheaders',
+    "django.contrib.sites",
+     # 3rd party
+    "allauth", # new
+    "allauth.account", # new
+    "allauth.socialaccount", # new
+    # social providers
+    "allauth.socialaccount.providers.github", 
+    "allauth.socialaccount.providers.twitter",
+    "allauth.socialaccount.providers.google",
+    "allauth.socialaccount.providers.facebook", 
+  
+  
   
 ]
 
@@ -164,3 +176,19 @@ CORS_ALLOWED_ORIGINS = [
 
 CSRF_TRUSTED_ORIGINS = ['https://k-ecommerce-production.up.railway.app']
 CORS_ALLOW_CREDENTIALS=True
+
+if DEBUG:
+    STRIPE_SECRET_KEY='sk_test_51M5nlOLKr5zDNqsyIfxLoo1XlhQrLHcM65IE8ZKbWM2JvxGvHoSxV8jwxkfnVzRmQLRiexu120XuxaArZPvHqSm400GUmidu76'
+    STRIPE_PUBLISHABLE_KEY='pk_test_51M5nlOLKr5zDNqsywjUPyZHSdKnLHQELRnvl5UsIumwcqpCUvGJBzHjpItpaVlFBc2xmi8hBKoDgy1z1coFFkGbx003Vm3ghc4'
+
+
+#AUTHENTICATION_BACKENDS = (
+    #"allauth.account.auth_backends.AuthenticationBackend",
+    #'shop.MyUser'
+#)
+
+
+SITE_ID = 1
+ACCOUNT_EMAIL_VERIFICATION = "none"
+LOGIN_REDIRECT_URL = "home"
+ACCOUNT_LOGOUT_ON_GET = True

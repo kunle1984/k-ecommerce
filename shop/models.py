@@ -55,6 +55,7 @@ class Product(models.Model):
 
 class Order(models.Model):
     user=models.ForeignKey(MyUser, on_delete=models.CASCADE, null=True, blank=True)
+    order_number=models.CharField(max_length=50, blank=True, null=True, verbose_name="Order Track Id")
     first_name=models.CharField(max_length=200, blank=False, null=False)
     last_name=models.CharField(max_length=200, blank=False, null=False)
     company_name=models.CharField(max_length=200, blank=True, null=True)
@@ -67,6 +68,8 @@ class Order(models.Model):
     create=models.DateTimeField(auto_now_add=True)
     note=models.TextField()
     order=models.CharField(max_length=1000)
+    has_paid=models.BooleanField(default=False, verbose_name="Payment status")
+    stripe_payment_intent = models.CharField( max_length=200)
     amount=models.CharField(max_length=200,null=True, blank=True)
 
     def __str__(self):
